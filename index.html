@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>YouTube intensive</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>                 
+        <header>
+            <div class="container">
+                <div class="row align-items-center">
+                    <svg class="hamburger" width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="1" x2="25" y2="1" stroke="black" stroke-width="2"/>
+                        <line y1="11" x2="25" y2="11" stroke="black" stroke-width="2"/>
+                        <line y1="6" x2="25" y2="6" stroke="black" stroke-width="2"/>
+                    </svg>
+                    <a href="#" class="logo">
+                        <img src="logo/youtube.svg" alt="logo">
+                    </a>
+                </div>
+                <div data-slide="nav" class="row">
+                    <div class="header__menu">
+                        <div class="header__item">
+                            <form class="search" action="#">
+                                <input required minlength="2" type="text" placeholder="Я ищу..." class="search__input">
+                                <button>
+                                    <img src="icons/glass.svg" alt="search">
+                                </button>
+                            </form>
+                        </div>
+                        <div class="header__item">
+                            <div class="header__item-descr">
+                                Night mode
+                            </div>
+                            <div class="header__item-switch">
+                                <input type="checkbox" id="cbx" style="display:none"/>
+                                <label for="cbx" class="toggle"><span></span></label>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </header>
+        <div class="videos">
+            <div class="container">
+                <div class="videos__wrapper">
+                    <a data-url="AiiSFdsuEjo" href="#" class="videos__item">
+                        <img src="img/thumb.webp" alt="thumb">
+                        <div class="videos__item-descr">
+                            #6 Оптимизация Page Speed Insight Google | Публикация на Хостинг | HandyHost | Марафон вёрстки
+                        </div>
+                        <div class="videos__item-views">
+                            2,6 тыс. просмотров
+                        </div>
+                    </a>
+                    <a data-url="Vb3r7XVTPOc" href="#" class="videos__item">
+                        <img src="img/thumb_1.webp" alt="thumb">
+                        <div class="videos__item-descr">
+                            #5 Пишем jQuery скрипты на landing page | Реальный заказ | Марафон вёрстки | Артем Исламов                        </div>
+                        <div class="videos__item-views">
+                            3,7 тыс. просмотров
+                        </div>
+                    </a>
+                    <a data-url="YH2XYrbz-S0" href="#" class="videos__item">
+                        <img src="img/thumb_2.webp" alt="thumb">
+                        <div class="videos__item-descr">
+                            #4 вёрстка реального landing page | Марафон верстки | Артем Исламов                        </div>
+                        <div class="videos__item-views">
+                            3,2 тыс. просмотров
+                        </div>
+                    </a>
+
+                    <button class="more">Загрузить еще</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal">
+            <div id='frame' class="modal__body"></div>
+        </div>
+        
+        <script src="js/script.js"></script>
+  </body>
+</html>
