@@ -5,6 +5,8 @@ const switcher = document.querySelector("#cbx"),
 let player,
     night = false;
 
+//HAMBURGER
+
 function bindSlideToggle(trigger, boxBody, content, openClass) {
     let button = {
         "element": document.querySelector(trigger),
@@ -28,6 +30,8 @@ function bindSlideToggle(trigger, boxBody, content, openClass) {
 }
 
 bindSlideToggle(".hamburger", '[data-slide="nav"]', ".header__menu", "slide-active");
+
+//NIGHT MODE
 
 function switchMode() {
     if (night === false) {
@@ -75,6 +79,8 @@ switcher.addEventListener("change", () => {
     switchMode();
 });
 
+//TEMP
+
 const data = [
     ['img/thumb_3.webp', 'img/thumb_4.webp', 'img/thumb_5.webp'],
     ['#3 Верстка на flexbox CSS | Блок преимущества и галерея | Марафон верстки | Артем Исламов',
@@ -83,6 +89,8 @@ const data = [
     ['3,6 тыс. просмотров', '4,2 тыс. просмотров', '28 тыс. просмотров'],
     ['X9SmcY3lM-U', '7BvHoh0BrMw', 'mC8JW_aG2EM']
 ];
+
+//MORE BUTTON
 
 more.addEventListener("click", () => {
     const videosWrapper = document.querySelector(".videos__wrapper");
@@ -104,9 +112,102 @@ more.addEventListener("click", () => {
             </div>
         `;
 
+        bindNewModal(card);
+        
         videosWrapper.appendChild(card);
+
+        if (night)
+        {
+            night = false;
+            switchMode();
+        }
+
         setTimeout(() => {
             card.classList.remove("videos__item-active");
         }, 10);
     }
+
+    sliceTitle(".videos__item-descr", 100);
 });
+
+//SLICE TITLES
+
+function sliceTitle(selector, count) {
+    document.querySelectorAll(selector).forEach(e => {
+        e.textContent.trim();
+
+        if (e.textContent.length > count) {
+            const str = e.textContent.slice(0, count + 1) + "...";
+            e.textContent = str;
+        } else return;
+    });
+}
+
+sliceTitle(".videos__item-descr", 100);
+
+//MODAL
+
+function openModal() {
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+    player.stopVideo();
+}
+
+function bindModal(cards) { //Bind modal for array
+    cards.forEach(card => {
+        card.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const id = card.getAttribute("data-url");
+            loadVideo(id);
+
+            openModal();
+        });
+    });
+}
+
+function bindNewModal(card) { //Bind modal for element
+    card.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const id = card.getAtribute("data-url");
+        loadVideo(id);
+
+        openModal();
+    });
+}
+
+bindModal(videos);
+
+modal.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("modal__body")) {
+        closeModal();
+    }
+});
+
+//VIDEO IFRAME
+
+function createVideoPlayer() {
+    let tag = document.createElement("script");
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.querySelectorAll("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    setTimeout(() => {
+        player = new YT.Player('frame', {
+            height: '100%',
+            width: '100%',
+            videoId: 'M7lc1UVf-VE',
+        });
+    }, 700);
+}
+
+function loadVideo(id) {
+    player.loadVideoById({'videoId': `${id}`});
+}
+
+createVideoPlayer();
